@@ -1,21 +1,39 @@
+import { ProductList } from "./components/ProductList";
 import { HomePage } from "./pages/HomePage";
 import { useEffect, useState } from "react";
- 
+import { CartModal } from "./components/CartModal";
+import { productsApi } from "./services/api"
+
 function App() {
-  const [productList, setProductList] = useState([]);
+  const [isVisible, setVisible] = useState(false);
+
+  const localProductList = localStorage.getItem("@MYPRODUCTLIST");
+
+  const [cartList, setCartList] = useState([]);
+  const [category, setCategory] = useState("");
+  const [productList, setProductList] = useState(localProductList ? JSON.parse(localProductList) : []);
 
   useEffect(() => {
-    const getProducts = async () => {
-      const response = await fetch("https://hamburgueria-kenzie-json-serve.herokuapp.com/products");
-      const json = await response.json();
-      setProductList(json);
-    }
+    const getProducts = async () => {      
+      try {
+        const { data } = await productsApi.get("/products", {
+          params: {
+            category: category !== "" ? category : undefined
+          },
+        });
+        setProductList(data);
+     } catch (error) {
+      console.log(error)   
+     }   
+   };
     getProducts();
-  }, []);
+  }, [category]);
 
   return (
     <>
-      <HomePage />
+      <HomePage setVisible={setVisible}/>
+      {isVisible ? <CartModal cartList={cartList}  setVisible={setVisible}/> : null}
+      <ProductList productList={productList}/>
     </>
   )
 }
