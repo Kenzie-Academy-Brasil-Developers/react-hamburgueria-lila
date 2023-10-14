@@ -1,0 +1,43 @@
+.headerBurguer {
+    width: 100%;
+    height: 80px;
+    max-width: 1386px;
+
+    background: #F5F5F5;
+    display: flex;
+    padding-bottom: 0px;
+}
+
+.boxHeader {
+    width: 100%;
+    display: flex;
+    flex-direction: row;  
+    align-items: center; 
+    justify-content: space-around;  
+    
+
+   .addCar {
+        color: #BDBDBD;
+        border: none;
+   
+       .logo {
+            display: flex;
+            justify-content: center;  
+            flex-direction: row;  
+            align-items: center; 
+        }
+
+       .numberCount {  
+            border-radius: 7px;
+            background: #27AE60;
+   
+            color: #FFF;
+
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 900;
+            line-height: 0px; /* 0% */
+       }
+   }
+}

@@ -1,0 +1,17 @@
+.containerProducts {
+    width: 100%;
+    max-width: 1386px;
+    min-width: 435px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    gap: 45px;
+    margin: 0 auto;
+    padding: 17px 0px 98px 98px;
+    padding-bottom: 98px;
+    align-items: center;
+    background: #FFF;
+}
+

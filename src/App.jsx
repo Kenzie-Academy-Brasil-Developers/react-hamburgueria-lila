@@ -1,39 +1,25 @@
 import { ProductList } from "./components/ProductList";
 import { HomePage } from "./pages/HomePage";
-import { useEffect, useState } from "react";
+import React, { useState } from 'react';
 import { CartModal } from "./components/CartModal";
-import { productsApi } from "./services/api"
+import "./styles/index.scss";
+import { ToastContainer } from "react-toastify";
+
 
 function App() {
   const [isVisible, setVisible] = useState(false);
 
-  const localProductList = localStorage.getItem("@MYPRODUCTLIST");
-
   const [cartList, setCartList] = useState([]);
-  const [category, setCategory] = useState("");
-  const [productList, setProductList] = useState(localProductList ? JSON.parse(localProductList) : []);
-
-  useEffect(() => {
-    const getProducts = async () => {      
-      try {
-        const { data } = await productsApi.get("/products", {
-          params: {
-            category: category !== "" ? category : undefined
-          },
-        });
-        setProductList(data);
-     } catch (error) {
-      console.log(error)   
-     }   
-   };
-    getProducts();
-  }, [category]);
+  const [productList, setProductList] = useState([]);
 
   return (
     <>
-      <HomePage setVisible={setVisible}/>
+      <HomePage setVisible={setVisible} cartList={cartList} setCartList={setCartList} productList={productList} setProductList={setProductList}/>
       {isVisible ? <CartModal cartList={cartList}  setVisible={setVisible}/> : null}
-      <ProductList productList={productList}/>
+      {productList && productList.length > 0 && (
+        <ProductList product={productList}/>
+      )}   
+      <ToastContainer/> 
     </>
   )
 }

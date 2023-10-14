@@ -1,4 +1,5 @@
 import { MdDelete } from "react-icons/md";
+// import { useState } from "react";
 
 export const CartItemCard = ({ product }) => {
    return (

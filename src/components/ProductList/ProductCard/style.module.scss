@@ -1,0 +1,102 @@
+.productCard {
+    width: 300px;
+    height: 346px;
+
+    // min-width: 250px;
+
+    border-radius: 5px;
+    border: 2px solid #E0E0E0;
+    background: #FFF;
+
+    list-style: none;
+
+    .productCardHearder {
+        width: 300px;
+        height: 150px;
+
+        display: flex;
+        justify-content: center;
+        background:  #F5F5F5;
+    }
+
+    .productCardMain {
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        width: 300px;
+        height: 196px;
+
+        padding: 20px;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .title {
+        width: 260px;
+        height: 40px;
+        
+        color: #333;
+
+        font-family: 'Inter', sans-serif;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 24px; /* 133.333% */
+    }
+
+    .category {
+        width: 260px;
+        
+        color: #828282;
+        font-family: 'Inter', sans-serif;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 16px; /* 133.333% */
+    }
+
+    .toAddButton {
+        display: inline-flex;
+        height: 40px;
+        padding: 0px 20px;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        border-radius: 8px;
+        border: 2px solid #BDBDBD;
+        background: #BDBDBD;
+
+        color: #FFF;
+
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+    }
+
+    .price {
+        width: 260px;
+
+        color: #27AE60;
+        font-family: Inter;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 24px; /* 171.429% */
+    }
+}
+
+.productCard:hover {
+    border-radius: 5px;
+    border: 2px solid #27AE60;
+    background: #FFF;
+}
+
+.toAddButton:hover{
+    border-radius: 8px;
+    border: 2px solid #27AE60;
+    background: #27AE60;
+}
+
