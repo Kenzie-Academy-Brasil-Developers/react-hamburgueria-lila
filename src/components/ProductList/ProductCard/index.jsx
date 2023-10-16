@@ -1,7 +1,7 @@
-import { productsApi } from "../../../services/api.js";
+import React from "react";
 import styles from "./style.module.scss";
 
-export const ProductCard = ({ product, addCartList, addFavorite }) => {
+export const ProductCard = ({product, addCartList, setCurrentCartList}) => {
     return(
         <li className={styles.productCard} role="list">
             <div className={styles.productCardHearder}>

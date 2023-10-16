@@ -2,8 +2,9 @@ import { useState } from "react";
 import Logo from "../../assets/Logo.svg";
 import { MdSearch, MdShoppingCart } from "react-icons/md";
 import styles from "./style.module.scss";
+import { HomePage } from "../../pages/HomePage";
 
-export const Header = ({setVisible}) => {
+export const Header = ({setVisible, toogleCartVisibility}) => {
    const [value, setValue] = useState("");
 
    return (

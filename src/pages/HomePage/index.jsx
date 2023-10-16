@@ -6,40 +6,29 @@ import React, { useEffect, useState } from 'react';
 import { toast } from "react-toastify";
 
 
-// useEffect montagem - carrega os produtos da API e joga em productList OK
-// useEffect atualização - salva os produtos no localStorage (carregar no estado)OK
-// adição, exclusão, e exclusão geral do carrinho
-// renderizações condições e o estado para exibir ou não o carrinho
-// filtro de busca
-// estilizar tudo com sass de forma responsiva
-
-
-export const HomePage = ({setVisible}) => {
+export const HomePage = ({setVisible, addCartList, setCurrentCartList}) => {
    const [cartList, setCartList] = useState([]);
    const [productList, setProductList] = useState([]);
    const [isCartVisible, setIsCartVisible] =useState(false);
-   const [favorites, setFavorites] = useState([]);
-
-   const addFavorite = (productToAdd) => {
-      const hasProducts = favorites.some((favorite) => favorite.id === productToAdd.id)
-
-      if (!hasProducts) {
-        setFavorites([...favorites, productToAdd]);
-      } else {
-        toast("Esse produto já foi adicionado.")
-      }
-
-   };
    
-   console.log(favorites);
-   
-   const addCartList = (product) => {
+
+   const addToCartList = (product) => {
       setCartList([...cartList, product]);
    };
-
+   
+   const removeFromCart = (productToRemove) => {
+      const updateCart = cartList.filter(product => product.id !== productToRemove.id);
+      setCartList(updateCart);
+   }
+   
    const toggleCartVisibility = () => {
       setIsCartVisible(!isCartVisible)
    };
+
+
+   const closeCartModal = () => {
+      setIsCartVisible(false);
+   }
    
    // onMount:  
    useEffect(() => {
@@ -54,25 +43,39 @@ export const HomePage = ({setVisible}) => {
       getProduct();
    }, []);
 
-
-      // onUpdate:
+   
+   // onUpdate:
    useEffect(() => {
-     localStorage.setItem('cartList', JSON.stringify(cartList));
+      localStorage.setItem('@cartList', JSON.stringify(cartList));
    }, [cartList]);
-
-   // onDismount
-   useEffect(() => {
-   }, []);
-
-
+   
+   
    return (
       <>
-         <Header setVisible={setVisible}/>
+         <Header setVisible={setVisible} productList={cartList} toogleCartVisibility={toggleCartVisibility}/>
          <main>
-            <ProductList productList={productList} addCartList={addCartList} setFavorites={setFavorites} addFavorite={addFavorite}/> 
-            {/* <button onClick={() => setIsCartVisible(!isCartVisible)}>Toggle Cart</button> */}
-            <CartModal cartList={cartList} setVisible={setVisible} />
+            <ProductList 
+               productList={productList} 
+               addCartList={addCartList}
+               setCurrentCartList={setCurrentCartList} 
+            /> 
+            <button onClick={toggleCartVisibility}>Abrir carrinho</button>
+            {isCartVisible && ( 
+               <CartModal cartList={cartList} setVisible={setVisible}>
+               <button onClick={closeCartModal}>X</button>
+               </CartModal>
+            )};
          </main>
       </>
    );
 };
+
+
+
+
+// useEffect montagem - carrega os produtos da API e joga em productList 
+// useEffect atualização - salva os produtos no localStorage (carregar no estado)
+// adição, exclusão, e exclusão geral do carrinho
+// renderizações condições e o estado para exibir ou não o carrinho
+// filtro de busca
+// estilizar tudo com sass de forma responsiva

@@ -1,7 +1,8 @@
 .headerBurguer {
     width: 100%;
     height: 80px;
-    max-width: 1386px;
+    max-width: 2560px;
+    min-width: 448px;
 
     background: #F5F5F5;
     display: flex;
@@ -10,10 +11,14 @@
 
 .boxHeader {
     width: 100%;
+    max-width: 1440px;
+    min-width: 448px;
     display: flex;
     flex-direction: row;  
     align-items: center; 
-    justify-content: space-around;  
+    justify-content: space-around; 
+    gap: 45px;
+    margin: 0 auto;
     
 
    .addCar {
@@ -41,3 +46,5 @@
        }
    }
 }
+
+

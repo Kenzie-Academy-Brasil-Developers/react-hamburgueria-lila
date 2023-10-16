@@ -1,0 +1,47 @@
+.containerModal {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+
+    background-color: rgba(0, 0, 0, 0.25);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    .topBox {
+        width: 100%;
+        height: 57px;
+        padding: 2rem;
+        margin: 0 1rem;
+        max-width: 484px;
+      
+
+
+        border-radius: 8px 8px 0px 0px;
+        background: #27AE60;
+
+        color: #FFF;
+
+        font-family: 'Inter', sans-serif;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 28px; /* 155.556% */
+    }
+
+    .middleBox {
+        width: 484px;
+        height: 351px;
+    
+        border-radius: 0px 0px 8px 8px;
+        background: #FFF;
+    }
+    
+    .lowerBox {
+        width: 454px;
+        height: 104px;
+    }
+}
