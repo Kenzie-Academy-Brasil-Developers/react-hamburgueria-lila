@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./style.module.scss";
 
-export const ProductCard = ({product, addCartList, setCurrentCartList}) => {
+export const ProductCard = ({product, addCartList}) => {
     return(
-        <li className={styles.productCard} role="list">
+        <li className={styles.container} role="list">
             <div className={styles.productCardHearder}>
                 <img  src={product.img} alt={product.name} />   
             </div>

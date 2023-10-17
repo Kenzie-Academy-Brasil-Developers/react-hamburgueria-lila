@@ -4,38 +4,88 @@ import { ProductList } from "../../components/ProductList";
 import { productsApi } from "../../services/api.js"
 import React, { useEffect, useState } from 'react';
 import { toast } from "react-toastify";
+import styles from "./style.module.scss";
 
-
-export const HomePage = ({setVisible, addCartList, setCurrentCartList}) => {
-   const [cartList, setCartList] = useState([]);
-   const [productList, setProductList] = useState([]);
-   const [isCartVisible, setIsCartVisible] =useState(false);
-   
-
-   const addToCartList = (product) => {
-      setCartList([...cartList, product]);
-   };
-   
-   const removeFromCart = (productToRemove) => {
-      const updateCart = cartList.filter(product => product.id !== productToRemove.id);
-      setCartList(updateCart);
+const EXAMPLE_DATA = [
+   {
+      "id": 1,
+      "name": "Hamburguer",
+      "category": "Sanduíches",
+      "price": 14,
+      "img": "https://i.imgur.com/Vng6VzV.png"
+   },
+   {
+      "id": 2,
+      "name": "X-Burguer",
+      "category": "Sanduíches",
+      "price": 16,
+      "img": "https://i.imgur.com/soOUeeW.png"
+   },
+   {
+      "id": 3,
+      "name": "Big Kenzie",
+      "category": "Sanduíches",
+      "price": 18,
+      "img": "https://i.imgur.com/eEzZzcF.png"
+   },
+   {
+      "id": 4,
+      "name": "Fanta Guaraná",
+      "category": "Bebidas",
+      "price": 5,
+      "img": "https://i.imgur.com/YuIbfCi.png"
+   },
+   {
+      "id": 5,
+      "name": "Coca-Cola",
+      "category": "Bebidas",
+      "price": 4.99,
+      "img": "https://i.imgur.com/KC2ihEN.png"
+   },
+   {
+      "id": 6,
+      "name": "Milkshake Ovomaltine",
+      "category": "Bebidas",
+      "price": 4.99,
+      "img": "https://i.imgur.com/iNkD4Pq.png"
    }
-   
-   const toggleCartVisibility = () => {
-      setIsCartVisible(!isCartVisible)
+]
+
+export const HomePage = () => {
+   const localCartList = localStorage.getItem("@CARTLIST");
+   const [cartList, setCartList] = useState(
+      localCartList ? JSON.parse(localCartList) : []);
+   const [productList, setProductList] = useState([]);
+   const [isCartVisible, setIsCartVisible] = useState(false);
+
+   const addCartList = (productToAdd) => {
+      const hasProducts = cartList.find((product) => product.id === productToAdd.id)
+
+      if (!hasProducts) {
+         setCartList((cartList) => [...cartList, productToAdd]);
+         toast.success("Produto adicionado  ao carrinho");
+      } else {
+         toast.error("Esse produto já foi adicionado.");
+      }
    };
 
+   const removeProduct = (productId) => {
+      const newCartList = cartList.filter((product) => product.id !== productId);
+      setCartList(newCartList);
+      toast.success("Produto removido com sucesso!")
+         ;
+   };
 
    const closeCartModal = () => {
       setIsCartVisible(false);
    }
-   
+
    // onMount:  
    useEffect(() => {
       const getProduct = async () => {
          try {
-            const { data } = await  productsApi.get("/products");
-            setProductList(data); 
+            const { data } = await productsApi.get("/products");
+            setProductList(data);
          } catch (error) {
             console.log(error);
          }
@@ -43,39 +93,32 @@ export const HomePage = ({setVisible, addCartList, setCurrentCartList}) => {
       getProduct();
    }, []);
 
-   
+
    // onUpdate:
    useEffect(() => {
       localStorage.setItem('@cartList', JSON.stringify(cartList));
    }, [cartList]);
-   
-   
+
+
    return (
       <>
-         <Header setVisible={setVisible} productList={cartList} toogleCartVisibility={toggleCartVisibility}/>
-         <main>
-            <ProductList 
-               productList={productList} 
+         {isCartVisible ? (
+            <CartModal
+               cartList={cartList}
+               setIsCartVisible={setIsCartVisible}
+               removeProduct={removeProduct}
+               setCartList={setCartList}
+            />
+         ) : null}
+         <Header setIsCartVisible={setIsCartVisible} />
+         <main className={styles.maincontainer}>
+            <ProductList
+               productList={productList}
                addCartList={addCartList}
-               setCurrentCartList={setCurrentCartList} 
-            /> 
-            <button onClick={toggleCartVisibility}>Abrir carrinho</button>
-            {isCartVisible && ( 
-               <CartModal cartList={cartList} setVisible={setVisible}>
-               <button onClick={closeCartModal}>X</button>
-               </CartModal>
-            )};
+            />
          </main>
       </>
    );
 };
 
 
-
-
-// useEffect montagem - carrega os produtos da API e joga em productList 
-// useEffect atualização - salva os produtos no localStorage (carregar no estado)
-// adição, exclusão, e exclusão geral do carrinho
-// renderizações condições e o estado para exibir ou não o carrinho
-// filtro de busca
-// estilizar tudo com sass de forma responsiva

@@ -1,18 +1,18 @@
-.productCard {
-    width: 300px;
-    height: 346px;
+.container {
+    width: 18.75rem;
+    height: 21.625rem;
 
     // min-width: 250px;
 
-    border-radius: 5px;
-    border: 2px solid #E0E0E0;
+    border-radius: 0.3125rem;
+    border: 0.125rem solid #E0E0E0;
     background: #FFF;
 
     list-style: none;
 
     .productCardHearder {
-        width: 300px;
-        height: 150px;
+        width: 18.75rem;
+        height: 9.375rem;
 
         display: flex;
         justify-content: center;
@@ -23,80 +23,81 @@
         display: flex;
         justify-content: flex-start;
         flex-direction: column;
-        width: 300px;
-        height: 196px;
+        width: 18.75rem;
+        height: 12.25rem;
 
-        padding: 20px;
+        padding: 1.25rem;
         align-items: flex-start;
-        gap: 10px;
+        gap: 0.625rem;
     }
 
     .title {
-        width: 260px;
-        height: 40px;
+        width: 16.25rem;
+        height: 2.5rem;
         
         color: #333;
 
         font-family: 'Inter', sans-serif;
-        font-size: 18px;
+        font-size: 1.125rem;
         font-style: normal;
         font-weight: 700;
-        line-height: 24px; /* 133.333% */
+        line-height: 1.5rem; 
     }
 
     .category {
-        width: 260px;
+        width: 16.25rem;
         
         color: #828282;
         font-family: 'Inter', sans-serif;
-        font-size: 12px;
+        font-size: 0.75rem;
         font-style: normal;
         font-weight: 400;
-        line-height: 16px; /* 133.333% */
+        line-height: 1rem; 
     }
 
     .toAddButton {
         display: inline-flex;
-        height: 40px;
-        padding: 0px 20px;
+        height: 2.5rem;
+        padding: 0rem 1.25rem;
         justify-content: center;
         align-items: center;
-        gap: 10px;
+        gap: 0.625rem;
 
-        border-radius: 8px;
-        border: 2px solid #BDBDBD;
+        border-radius: 0.5rem;
+        border: 0.125rem solid #BDBDBD;
         background: #BDBDBD;
 
         color: #FFF;
 
         font-family: 'Inter', sans-serif;
-        font-size: 14px;
+        font-size: 0.875rem;
         font-style: normal;
         font-weight: 600;
         line-height: normal;
     }
 
     .price {
-        width: 260px;
+        width: 16.25rem;
 
         color: #27AE60;
         font-family: Inter;
-        font-size: 14px;
+        font-size: 0.875rem;
         font-style: normal;
         font-weight: 600;
-        line-height: 24px; /* 171.429% */
+        line-height: 1.5rem; 
+    }
+
+    .productCard:hover {
+        border-radius: 0.3125rem;
+        border: 0.125rem solid #27AE60;
+        background: #FFF;
+    }
+    
+    .toAddButton:hover{
+        border-radius: 0.5rem;
+        border: 0.125rem solid #27AE60;
+        background: #27AE60;
     }
 }
 
-.productCard:hover {
-    border-radius: 5px;
-    border: 2px solid #27AE60;
-    background: #FFF;
-}
-
-.toAddButton:hover{
-    border-radius: 8px;
-    border: 2px solid #27AE60;
-    background: #27AE60;
-}
 

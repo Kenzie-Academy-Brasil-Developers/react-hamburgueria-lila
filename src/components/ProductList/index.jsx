@@ -1,7 +1,7 @@
 import { ProductCard } from "../ProductList/ProductCard";
 import styles from "./style.module.scss";
 
-export const ProductList = ({ productList, addCartList, setCurrentCartList}) => {
+export const ProductList = ({ productList, addCartList}) => {
 
    if (!productList || !Array.isArray(productList)) {
       return <div>Lista de produtos vazia.</div>
@@ -14,7 +14,6 @@ export const ProductList = ({ productList, addCartList, setCurrentCartList}) => 
                key={product.id} 
                product={product} 
                addCartList={addCartList} 
-               setCurrentCartList={setCurrentCartList}
             />
          ))}
       </ul>

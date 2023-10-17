@@ -1,17 +1,25 @@
 .containerProducts {
     width: 100%;
-    max-width: 1440px;
-    min-width: 435px;
+    max-width: 80rem;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
 
-    gap: 45px;
+    gap: 1.25rem;
     margin: 0 auto;
-    padding: 17px 0px 98px 98px;
-    padding-bottom: 98px;
+    // padding: 17px 0px 98px 98px;
+    padding-bottom: 6.125rem;
+    padding-top: 1rem;
     align-items: center;
     background: #FFF;
+}
+
+@media (max-width:769px) {
+    .containerProducts {
+        padding-left: 1rem;
+        flex-wrap: nowrap;
+        overflow: scroll;
+    }
 }
 
